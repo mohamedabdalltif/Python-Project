@@ -12,7 +12,7 @@ filterwarnings("ignore")
 # read file 
 
 df=pd.read_csv("Summer22_FootballTransfers.csv",delimiter=";",decimal=',' ,encoding='latin1')
-# print(df.head())
+print(df.head())
 
 # ---------------------------------------------------------------------------------- #
 # cleaning NaN
@@ -35,7 +35,6 @@ for i in df.columns:
     df[i]= df[i].apply(lambda x: replace_foreign_characters(x))
 
 
-
 # ---------------------------------------------------------------------------------- #
 # cost col  to numeric
 
@@ -45,10 +44,12 @@ def value_to_float(x):
     if type(x) == float or type(x) == int:
         return x
     if 'Th' in x:
+        
         if len(x) > 1:
             return float(x.replace('Th', '')) * 1000
         return 1000.0
     if 'm' in x:
+       
         if len(x) > 1:
             return float(x.replace('m', '')) * 1000000
         return 1000000.0
